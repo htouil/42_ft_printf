@@ -6,7 +6,7 @@
 /*   By: htouil <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 18:45:11 by htouil            #+#    #+#             */
-/*   Updated: 2022/12/25 23:58:17 by htouil           ###   ########.fr       */
+/*   Updated: 2022/12/26 14:52:13 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ static int	ft_displayf(const char c, va_list thing)
 	count = 0;
 	if (c == 'c')
 		count += ft_putchar(va_arg(thing, int));
-	if (c == 's')
+	else if (c == 's')
 		count += ft_putstr(va_arg(thing, char *));
-	if (c == 'p')
+	else if (c == 'p')
 		count += ft_putvoid(va_arg(thing, void *));
-	if (c == 'd' || c == 'i')
+	else if (c == 'd' || c == 'i')
 		count += ft_putnbr(va_arg(thing, int));
-	if (c == 'u')
+	else if (c == 'u')
 		count += ft_putnbruns(va_arg(thing, unsigned int));
-	if (c == 'x')
+	else if (c == 'x')
 		count += ft_puthexlow(va_arg(thing, unsigned int));
-	if (c == 'X')
+	else if (c == 'X')
 		count += ft_puthexhigh(va_arg(thing, unsigned int));
-	if (c == '%')
+	else if (c == '%')
 		count += ft_putchar('%');
 	return (count);
 }

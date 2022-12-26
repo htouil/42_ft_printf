@@ -6,7 +6,7 @@
 /*   By: htouil <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:59:07 by htouil            #+#    #+#             */
-/*   Updated: 2022/12/25 23:08:21 by htouil           ###   ########.fr       */
+/*   Updated: 2022/12/26 16:20:23 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_putnbruns(unsigned int un)
 	i = 0;
 	if (un > 9)
 	{
-		ft_putnbruns(un / 10);
-		ft_putnbruns(un % 10);
+		i += ft_putnbruns(un / 10);
+		i += ft_putnbruns(un % 10);
 	}
 	else
 		i += ft_putchar(un + '0');

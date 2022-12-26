@@ -6,13 +6,13 @@
 /*   By: htouil <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:04:36 by htouil            #+#    #+#             */
-/*   Updated: 2022/12/25 23:06:42 by htouil           ###   ########.fr       */
+/*   Updated: 2022/12/26 19:29:38 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_puthexalpha(int a)
+static int	ft_puthexalpha(int a)
 {
 	if (a == 10)
 		ft_putchar('a');
@@ -26,6 +26,7 @@ static void	ft_puthexalpha(int a)
 		ft_putchar('e');
 	else if (a == 15)
 		ft_putchar('f');
+	return (1);
 }
 
 int	ft_puthexlow(unsigned int lo)
@@ -35,18 +36,12 @@ int	ft_puthexlow(unsigned int lo)
 	i = 0;
 	if (lo >= 16)
 	{
-		ft_puthexlow(lo / 16);
-		ft_puthexlow(lo % 16);
+		i += ft_puthexlow(lo / 16);
+		i += ft_puthexlow(lo % 16);
 	}
 	if (lo >= 0 && lo <= 9)
-	{
-		ft_putnbruns(lo);
-		i++;
-	}
-	else
-	{
-		ft_puthexalpha(lo);
-		i++;
-	}
+		i += ft_putnbruns(lo);
+	if (lo >= 10 && lo <= 15)
+		i += ft_puthexalpha(lo);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: htouil <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:57:45 by htouil            #+#    #+#             */
-/*   Updated: 2022/12/25 22:26:42 by htouil           ###   ########.fr       */
+/*   Updated: 2022/12/26 15:51:58 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,19 @@ int	ft_putnbr(int n)
 
 	i = 0;
 	if (n == -2147483648)
+	{
 		i += ft_putstr("-2147483648");
+		return (i);
+	}
 	if (n < 0)
 	{
-		ft_putchar('-');
+		i += ft_putchar('-');
 		n *= -1;
-		i++;
 	}
 	if (n > 9)
 	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
+		i += ft_putnbr(n / 10);
+		i += ft_putnbr(n % 10);
 	}
 	else
 		i += ft_putchar(n + '0');

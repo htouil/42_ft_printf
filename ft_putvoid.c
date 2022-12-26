@@ -6,13 +6,13 @@
 /*   By: htouil <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:16:10 by htouil            #+#    #+#             */
-/*   Updated: 2022/12/25 23:10:43 by htouil           ###   ########.fr       */
+/*   Updated: 2022/12/26 19:54:47 by htouil           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_addhexalpha(int a)
+static int	ft_addhexalpha(int a)
 {
 	if (a == 10)
 		ft_putchar('a');
@@ -26,6 +26,7 @@ static void	ft_addhexalpha(int a)
 		ft_putchar('e');
 	else if (a == 15)
 		ft_putchar('f');
+	return (1);
 }
 
 static int	ft_addhexlow(unsigned long long lo)
@@ -35,16 +36,13 @@ static int	ft_addhexlow(unsigned long long lo)
 	i = 0;
 	if (lo >= 16)
 	{
-		ft_addhexlow(lo / 16);
-		ft_addhexlow(lo % 16);
+		i += ft_addhexlow(lo / 16);
+		i += ft_addhexlow(lo % 16);
 	}
 	if (lo >= 0 && lo <= 9)
 		i += ft_putnbruns(lo);
-	else
-	{
-		ft_addhexalpha(lo);
-		i++;
-	}
+	if (lo >= 10 && lo <= 15)
+		i += ft_addhexalpha(lo);
 	return (i);
 }
 
